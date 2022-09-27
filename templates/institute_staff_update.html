@@ -1,0 +1,85 @@
+{% extends 'base_institute.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    input[type=text], select,[type=files] ,[type=email],textarea {
+  width: 100%; /* Full width */
+  padding: 8px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
+</style>
+<div class="container" style="padding: 40px; background-color: aliceblue;">
+  
+  <h3>Edit your Data</h3>
+  <br>
+              {% for i in var %}
+                <form method="post" action="{% url 'institute_staff_updatesave' i.id %}">
+              {% endfor %}
+                    {% csrf_token %}
+
+    <label for="name">Name</label>
+    <input type="text" id="fname" name="name" value="{{vars.name}}">
+
+    <label for="designation">Designation</label>
+    <input type="text" id="lname" name="designation" value="{{vars.desig}}">
+
+    <label for="department">Department</label>
+    <select id="country" name="department" value="{{vars.department}}">
+      <option>IT</option>
+      <option>Tours</option>
+      <option>Science</option>
+    </select>
+
+    <label for="contact">Contact</label>
+    <input type="text" id="fname" name="contact" value="{{vars.contact}}" >
+
+    
+    <label for="image">Image</label>
+    <input type="files" id="lname" name="photo" value="{{vars.photo}}">
+    
+
+    <label for="email">Email</label>
+    <input type="emails" id="lname" name="email" value="{{vars.email}}">
+    
+    <label for="username">Username</label>
+    <input type="text" id="fname" name="username" value="{{vars.username}}" >
+
+    <label for="email">Password</label>
+    <input type="text" id="lname" name="password" value="{{vars.password}}">
+    <label for="email">Privilege</label>
+    <input type="text" id="lname" name="check" value="{{vars.check}}">
+
+    <input type="submit" value="Done">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a href="{% url 'institute_staff' %}" class="btn btn-secondary me-md-2" type="button">back</a>
+    </div>
+
+  </form>
+</div>
+</div>
+
+{% endblock %}

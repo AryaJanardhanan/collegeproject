@@ -1,0 +1,66 @@
+{% extends 'base_staff.html' %}
+{% load static %}
+{% block content %}
+
+  <div class="row" > 
+    <div class="col-sm-4 grid-margin">
+      <div class="card" style="height:200px;margin-top:15%;margin-left: 5%;box-shadow: 5px 10px 8px #888888;background-color:rgb(241, 248, 248);">
+        <div class="card-body" style="text-align: right;cursor: pointer;">
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div style="text-align: center;">
+               <a href="{% url 'add_class_copy' %}" style="text-decoration: none;color:black">
+                <h2  style="margin-top: 25%; text-align: center;">Class & Subjects</h2>
+            </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 grid-margin">
+      <div class="card" style="height:200px;margin-top:15%;margin-left: 5%;box-shadow: 5px 10px 8px #888888;background-color:rgb(241, 248, 248);">
+        <div class="card-body" style="text-align: right;cursor: pointer;">
+          <div class="row">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+              <div style="text-align: center;">
+               <a href="{% url 'add_onlineclass_copy' %}" style="text-decoration: none;color:black">
+                <h2  style="margin-top: 25%; text-align: center;">Online Class</h2>
+            </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="col-sm-4 grid-margin">
+        <div class="card" style="height:200px;margin-top:15%;margin-left: 5%;box-shadow: 5px 10px 8px #888888;background-color:rgb(241, 248, 248);">
+          <div class="card-body" style="text-align: right;cursor: pointer;">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                <div style="text-align: center;">
+                 <a href="{% url 'add_recordedclass_copy' %}" style="text-decoration: none;color:black">
+                  <h2  style="margin-top: 25%; text-align: center;">Recorded Class</h2>
+              </a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 grid-margin">
+        <div class="card" style="height:200px;margin-top:15%;margin-left: 5%;box-shadow: 5px 10px 8px #888888;background-color:rgb(241, 248, 248);">
+          <div class="card-body" style="text-align: right;cursor: pointer;">
+            <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                <div style="text-align: center;">
+                 <a href="{% url 'add_studymaterial_copy' %}" style="text-decoration: none;color:black">
+                  <h2  style="margin-top: 25%; text-align: center;">Study Materials</h2>
+              </a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+ </div>
+
+
+  {% endblock %}

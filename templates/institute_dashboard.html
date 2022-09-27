@@ -1,0 +1,104 @@
+{% extends 'base_institute.html' %}
+ {% load static %}
+  {% block content %}
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<style>
+  @media only screen and (max-width: 1200px) {
+    .icon{
+     float:right;
+    }
+  }
+</style>
+
+<body>
+    <br>
+    <div class="col-sm-6 flex-end">
+      <div class="icon"><a href="#" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-left: 120vh;margin-right:10%;"><i class="fa fa-solid fa-user" style="font-size:30px;"></i></a></div>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+          
+          <!-- Modal Header -->
+          <div class="modal-header">
+          <h4 class="modal-title">Edit Data</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+          <form action="">
+              <label for="fname">Fullname:</label><br>
+              <input type="text"  name="fname"><br>
+              <label for="lname">Email:</label><br>
+              <input type="email"  name="email"><br>
+              <label for="lname">Conatct:</label><br>
+              <input type="text"  name="conatct"><br><br>
+              <input type="submit" value="Submit">
+            </form> 
+            
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+          
+          </div>
+          </div>
+             </div>
+    </div>
+   
+<div class="row" style=" padding-top: 3%; margin-left: 80px;">
+        <!-- The Modal -->
+
+
+    <div class="stretch-card">
+        <div class="card" style="background-color: whitesmoke;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); width: 80%;">
+            <div class="card-body">
+                <div class="row">
+                <div class="col-sm-6">
+                <div class="d-flex flex-row justify-content-between">
+                    <h3 style="color: black;">Hi, Welcome</h3>
+                    <br>
+                </div>
+                </div>
+                </div>
+
+            <!-----------card-------------->
+            <figure class="snip1218">
+                <div class="image">
+                    <img src="{% static 'assets/images/ma.jpeg' %}" width="100%">
+                </div>
+                <figcaption>
+                    <br>
+                  <h3 style="text-align: center;">{{c.name}}</h3>
+                
+                  <h5 style="text-align: center;">{{c.address}}</h5>
+                  
+                  <h5 style="text-align: center;">{{c.contact}}</h5>
+                  
+                  <h5 style="text-align: center;">{{c.email}}</h5>
+                  
+                  <div class="icons"><a href="#"><i class="ion-social-reddit-outline"></i></a><a href="#"> <i class="ion-social-twitter-outline"></i></a><a href="#"> <i class="ion-social-vimeo-outline"></i></a></div>
+                </figcaption>
+              </figure>
+
+
+
+            <!---------------------------------->
+
+                
+            </div>
+        </div>
+    </div>
+    
+  </div>
+
+</body>
+
+
+{% endblock %}

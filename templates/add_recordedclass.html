@@ -1,0 +1,186 @@
+
+
+{% extends 'base_institute.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12 grid-margin " >
+     <div class="card" style=" margin-left: 10%; margin-right: 10%; margin-top: 10% ;color: rgb(47, 60, 184);" >
+      <div class="card-body" style="background-image: linear-gradient(rgb(253, 253, 174), rgb(250, 232, 184));">
+        <h1 class="card-title text-center" style="margin-left: 40px;">Recordedclass</h1>
+        <br>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+ <input type="text" class="form-control py-3" id="myInput" onkeyup="myFunction()" placeholder="Search for Name" title="Type in a name" style="color: black; margin-left: 30px;">
+  </div> 
+   <div class="col-sm-2  w-50 " style="margin-left:10%;">
+<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#myModal" style="background-color:rgb(40, 58, 188);  margin-right: 30px;" >
+<b> Add Recordedclass </b>
+</button>
+
+  <!-- The Modal -->
+  <div class="modal " id="myModal" >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header "  >
+          <h4 class="modal-title w-100 text-center">Visitor Form</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body p-0" >
+            <form action="add_recordedclass" method="POST" class="p-0">
+               {% csrf_token %} 
+                <div class="container ">
+                  
+                <div class="row">
+                  <div class="col-6">
+                    <select  name="recordedclass" >
+                      <option>Select class</option>
+                      {% for i in var %}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <select  name="topic" >
+                      <option>Select Subject</option>
+                      <option > English </option>
+                      <option > Malayalam I</option>
+                      <option > Malayalam II</option>
+                      <option >hindi</option>
+                      <option >Biology</option>
+                      <option >Chemistry</option>
+                      <option >Physics</option>
+                    </select>
+                  </div>
+                
+                
+                  </div>
+                  
+                    <div class="row">
+                      <div class="col-6">
+                        <input type="text" placeholder="Topic"  name="sub" required>
+                      </div>
+                      <div class="col-6">
+                        <input type="url" rows="4" placeholder="Video Link" cols="50" name="url" required>
+                      </div>
+                    </div>
+      
+                    <div class="row">
+                <div class="col-12">
+                  <input type="file" placeholder="Thumbnail" name="thmb" ></div>
+                      </div>
+  
+                 
+                  </div>
+                
+                
+               
+                  <div class="container con" style="display: flex;justify-content: center;">
+                  <input type="submit" value="Done" class="btn btn-success" >
+  
+                  </div>
+              </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Close</button> -->
+        </div>
+  
+      </div>
+    </div>
+  </div>
+     </div>
+     </div>
+       <br>
+       <br>
+       <div class="table-responsive">
+        <table class="table" id="myTable" style="color: black;">
+          <thead style="font-size: 16px;font-family: Arial, Helvetica, sans-serif; width: 100%;">
+            <tr class="header" >
+                
+                  <th> Class</th>
+                  <th> Subject </th>
+                  <th> Meeting Link</th>
+                  <th> Topic</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in data %} 
+                          <tr>
+                             <td>{{ i.portions_id.name }}</td>
+                             <td>{{ i.topic}} </td>
+                             <td>{{ i.url}}</td>
+                             <td>{{ i.sub }}</td>
+                              <td><a href="#" class="btn btn-danger" onclick="return confirm('Are You Sure want to Delete ?')">Delete</a></td>
+                             
+                        
+                          </tr>
+                          {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+    function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+    txtValue = td.textContent || td.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    tr[i].style.display = "";
+    } else {
+    tr[i].style.display = "none";
+    }
+    }       
+    }
+    }
+    </script>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+{% extends 'base_staff.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+   
+<div class="row" style="margin-left: 20px; padding-top: 5%; margin-right: 10px;">
+    <div class="col-md-4 grid-margin stretch-card">
+        <div class="card" style="margin-left: 5%;background-color:whitesmoke;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="card-body">
+
+                <center> 
+                    <img src="{% static 'assets/images/pic.jpg' %}" alt="pic" style="border-radius: 50%;" width="130" height="130" />
+
+                    <!-- <canvas id="transaction-history" class="transaction-chart"></canvas> -->
+                    <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                        <div class="text-md-center text-xl-left">
+                        </div>
+                        <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                            <h4>STAFF</h4>
+                        </div>
+                    </div>
+                    
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="background-color:whitesmoke;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); width: 80%;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                <div class="d-flex flex-row justify-content-between">
+                    <h3 style="color: black;">Data staus</h3>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                    <a href="" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#myModal">Edit Profile</a>
+
+                    <!-- The Modal -->
+              <div class="modal" id="myModal">
+              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+   
+        <!-- Modal Header -->
+          <div class="modal-header">
+          <h4 class="modal-title">Edit Data</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+  
+        <!-- Modal body -->
+         <div class="modal-body">
+            <form action="">
+                <label for="fname">Fullname:</label><br>
+                <input type="text"  name="fname" value=""><br>
+                <label for="lname">Email:</label><br>
+                <input type="email"  name="email" value=""><br>
+                <label for="lname">Conatct:</label><br>
+                <input type="text"  name="conatct" value=""><br><br>
+                <input type="submit" value="Submit">
+              </form> 
+              
+         </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+   </div>
+                </div>
+                </div>
+
+
+
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-12">
+                        <div class="preview-list">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject" style="color: black;">Fullname</h6>
+                                        <!-- <p class="text-muted mb-0">Upload new design</p> -->
+                                    </div>
+                                    <span style="margin-left:25% ; color: darkblue;">
+                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                        <!-- <p class="text-muted">55 minutes ago</p>
+                      <p class="text-muted mb-0">35 tasks, 7 issues </p> -->
+                                        <h6 class="preview-subject">{{a.name}}</h6>
+                                    </div>
+                                    </span>
+                                </div>
+                                <br>
+                            
+                              
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject" style="color: black;">Email</h6>
+                                        <!-- <p class="text-muted mb-0">New project discussion</p> -->
+                                    </div>
+                                    <span style="margin-left:25% ; color: darkblue;">
+                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                        <!-- <p class="text-muted">35 minutes ago</p>
+                      <p class="text-muted mb-0">15 tasks, 2 issues</p> -->
+                                        <h6 class="preview-subject">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{a.email}}</h6>
+                                    </div>
+                                    </span>
+                                </div>
+                                <br>
+                            
+                             
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject" style="color: black;" >Contact</h6>
+                                        <!-- <p class="text-muted mb-0">Sent release details to team</p> -->
+                                    </div>
+                                    <span style="margin-left:25% ; color: darkblue;">
+                                    <div class="me-auto text-sm-right pt-2 pt-sm-0">
+                                        <!-- <p class="text-muted">55 minutes ago</p>
+                      <p class="text-muted mb-0">35 tasks, 7 issues </p> -->
+                                        <h6 class="preview-subject">{{a.contact}}</h6>
+                                    </div>
+                                    </span>
+                                </div>
+                                <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+  </div>
+</body>
+
+
+{% endblock %}
+ 

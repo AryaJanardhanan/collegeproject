@@ -1,0 +1,298 @@
+{% extends 'base_institute.html' %}
+{% load static %}
+{% block content %}
+
+
+          <div class="row">
+              <div class="col-12 grid-margin " >
+                 <div class="card" style=" margin-left: 10%; margin-right: 10%; margin-top: 10% ;color: rgb(47, 60, 184);" >
+                  <div class="card-body" style="background-image: linear-gradient(rgb(253, 253, 174), rgb(250, 232, 184));">
+                    <h1 class="card-title text-center" style="margin-left: 40px;">Admission</h1>
+                    <br>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-4">
+             <input type="text" class="form-control py-3" id="myInput" onkeyup="myFunction()" placeholder="Search for Name" title="Type in a name" style="color: black; margin-left: 30px;">
+              </div> 
+               <div class="col-sm-2  w-50 " style="margin-left:10%;">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#myModal" style="background-color:rgb(40, 58, 188);  margin-right: 30px;" >
+            <b> Admission</b>
+            </button>
+          
+            <!-- The Modal -->
+                 <div class="modal " id="myModal" >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+            
+                  <!-- Modal Header -->
+                  <div class="modal-header "  >
+                    <h4 class="modal-title w-100 text-center">Admission Form</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+            
+                  <!-- Modal body -->
+                  <div class="modal-body p-0" >
+                      <form action="{% url 'institute_admission' %}" method="POST" class="p-0">
+                         {% csrf_token %} 
+                          <div class="container ">
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                  <input type="text" placeholder="Student Name"   name="sname" required >
+        
+                                </div>
+                                <div class="col-6">
+                                  <input type="date" placeholder="DOB"   name="dob" required>
+                              </div>
+                            </div>
+                            
+                              <div class="row">
+                                <div class="col-6">
+                                  <input type="textarea" placeholder="Permanant Address" rows="4" cols="50" name="caddress" required>
+                                </div>
+                                <div class="col-6">
+                                  <input type="textarea" rows="4" placeholder="Current Address" cols="50" name="paddress" required>
+                                </div>
+                              </div>
+                
+    
+                            <div class="row">
+                              <div class="col-12">
+                                <label>Gender</label>
+                              </div>
+                            </div>
+                            
+                            <div class="row">
+                              <div class="col-4">
+                                <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Male
+                                </label>
+                              </div>
+                              <div class="col-4">
+                                <input class="form-check-input" type="radio" name="gender" value="female">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Female
+                                </label>
+                              </div>
+                              <div class="col-4">
+                                <input class="form-check-input" type="radio" name="gender" value="female" >
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Others
+                                </label>
+                              </div>
+                            </div>
+                          
+                          
+                                <div class="row">
+                                  <div class="col-4">
+                                    <input type="text" placeholder="Father"  name="father" required>
+                                  </div>
+                                  <div class="col-4">
+                                    <input type="text" placeholder="Father Occupation"  name="foccu" required>
+                                  </div>
+                                  <div class="col-4">
+                                    <input type="text" placeholder="Father contact"  name="fcontact" required>
+                                  </div>
+                                </div>
+                                
+                        
+                                <div class="row">
+                                  <div class="col-4">
+                                    <input type="text" placeholder="Mother"  name="mother" required>
+                                </div>
+                                <div class="col-4">
+                                  <input type="text" placeholder="Mother Occupation" name="moccu" required>
+                                </div>
+                                <div class="col-4">
+                                  <input type="text" placeholder="Mother contact" name="mcontact" required>
+                                </div>
+                              </div>
+                            
+                            
+                             <div class="row">
+                              <div class="col-12"><label>Previous Qualification</label>
+                              </div>
+                              </div>
+                              <div class="row">
+                                
+                              
+                              <div class="col-12"><input type="text" placeholder="institute Name" name="quali" ></div>
+                              <div class="col-6"><input type="text" placeholder="Marks" name="marks" ></div>
+                              <div class="col-6"><input type="file" placeholder="upload certificate" name="certificate" ></div>
+                             
+                              </div>
+                              
+                              
+                             <div class="row">
+                              <div class="col-6">
+                                <div class="row"> 
+                                  <div class="col">
+                                    <label>Transportation Mode</label></div>
+                                  </div>    
+                                  
+                                  <div class="row">
+                                    <div class="col-1">
+                                      <input class="form-check-input" type="radio" name="trans" value="self">
+                                    </div>
+                                    <div class="col-6">
+                                      <label class="form-check-label" for="flexRadioDefault1"> College Bus
+                                      </label>
+                                    </div>
+                                  
+                                  
+                                    <div class="col-1">
+                                      <input class="form-check-input" type="radio" name="trans" value="self">
+                                    </div>
+                                    <div class="col-3">
+                                      <label class="form-check-label" for="flexRadioDefault1">self
+                                      </label>
+                                    </div>
+                                  </div> 
+                                </div>           
+                              
+                              <div class="col-6">
+                                <div class="row">
+                              <div class="col-12">Blood group</div>
+                                  <div class="col-12">
+                                    <input type="text" placeholder="blood group"  name="blood" required>
+                                  </div>
+                                </div>
+                               </div>
+                               <div class="row">
+                                <div class="col-6">
+                                  <label>Image</label>
+                                </div>
+                                
+                               </div>
+                               <div class="row">
+                                <div class="col-6">
+                                  <input type="file" placeholder="Upload"  name="photo" required>
+                                </div>
+                                <div class="col-6">
+                                  <select  name="sclass" >
+                                    <option>Select class</option>
+                                    {% for i in var %}
+                                  <option value="{{i.id}}">{{i.name}}</option>
+                                  {% endfor %}
+                                  </select>
+                                </div>
+                               </div>
+                              </div>
+                               <div class="row">
+                                <div class="col-6">
+                                  <input type="text" placeholder="Username" name="username" required>
+                                </div>
+                                <div class="col-6">
+                                  <input type="password" placeholder="Password" name="password" required>
+                                </div>
+                               </div>
+                             
+        
+        
+                            </div>
+                            <div class="container con" style="display: flex;justify-content: center;">
+                            <input type="submit" value="Done" class="btn btn-success" >
+    
+                            </div>
+                        </form>
+                  </div>
+            
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Close</button> -->
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+               </div>
+               </div>
+                 <br>
+                 <br>
+                 <div class="table-responsive">
+                  <table class="table" id="myTable" style="color: black;">
+                    <thead style="font-size: 16px;font-family: Arial, Helvetica, sans-serif; width: 100%;">
+                      <tr class="header" >
+                      
+                        <th > Student&nbsp;Name  </th>
+                        <th> Date&nbsp;Of&nbsp;Birth</th>
+                        <th> Current&nbsp;Address </th>
+                        <th> Permanent&nbsp;Address </th>
+                        <th> gender</th>
+                        <th> Father</th>
+                        <th> Father&nbsp;Occupation</th>
+                        <th> Father&nbsp;Contact </th>
+                        <th> Mother</th>
+                        <th> Mother&nbsp;Occupation</th>
+                        <th> Mother&nbsp;Contact </th>
+                        <th> Qualification</th>
+                        <th> Marks</th>
+                        <th> Certificate </th>
+                        <th>Class</th>
+                        <th>Image</th>
+                        <th>Transportation</th>
+                        <th>Blood&nbsp;Group</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in data %}
+                                <tr>
+                                   <td>{{ i.sname }}</td>
+                                   <td>{{ i.dob|date:"d-m-Y" }}</td>
+                                   <td>{{ i.caddress }}</td>
+                                   <td>{{ i.paddress }}</td>               
+                                   <td>{{ i.gender }}</td>
+                                   <td>{{ i.father }}</td>
+                                   <td>{{ i.foccu }}</td>
+                                   <td>{{ i.fcontact }}</td>
+                                   <td>{{ i.mother }}</td>
+                                   <td>{{ i.moccu }}</td>
+                                   <td>{{ i.mcontact }}</td>
+                                   <td>{{ i.quali }}</td>
+                                   <td>{{ i.marks }}</td>
+                                   <td>{{ i.certificate }}</td>
+                                   <td>{{ i.portion_id.name }}</td>
+                                   <td>{{ i.photo }}</td>
+                                 
+                                  
+                                   <td>{{ i.trans }}</td>
+                                   <td>{{ i.blood }}</td>
+                                  
+                                   
+                                    <td><a href="{% url 'institute_admission_delete' i.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure want to Delete ?')">Delete</a></td>
+                                   
+                              </tr>
+                             {% endfor %} 
+                    </tbody>
+                  </table>
+                </div>
+        
+                   </div>
+                  </div>
+                </div>
+              </div>
+          
+              <script>
+              function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              } else {
+              tr[i].style.display = "none";
+              }
+              }       
+              }
+              }
+              </script>
+
+{%  endblock %}

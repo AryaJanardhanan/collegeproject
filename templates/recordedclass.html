@@ -1,0 +1,55 @@
+{% extends 'base_student.html' %}
+ {% load static %}
+  {% block content %}
+  
+  
+
+ 
+    <div class="row"> 
+    {% for i in rr %}   
+    
+     <div class="col-sm-4 grid-margin">
+      <div class="card" style="height:200px; margin-top:15%;margin-left: 8%;box-shadow: 5px 10px 8px #888888; background-image: url('static/assets/images/preview.jpg'); background-size: cover;">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#myModal-{{i.id}}" style="text-decoration: none; color: #f8f9fa;">
+      
+      <div class="card-body">
+  
+        <div class="row">
+      
+          <h3 style="color:yellow; text-align:end;">{{i.topic}}</h3>
+
+          <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+            <h4 style="color:yellow; text-align:end;">{{i.sub}}</h4>
+            <i class="icon-lg mdi mdi-language-python text-primary ms-auto"></i>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <div class="modal" id="myModal-{{i.id}}">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              <iframe width="460" height="315" src="{{i.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+      
+            <!-- Modal footer -->
+            
+      
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+  {% endblock %}

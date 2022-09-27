@@ -1,0 +1,414 @@
+{% extends 'base_staff.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+form {
+  border: 3px solid #f1f1f1;
+  font-family: Arial;
+}
+
+.container {
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+input[type=text],[type=textarea],[type=email],[type=file], [type=date], input[type=submit],[type=password] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+ 
+}
+
+
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+}
+
+input[type=submit]:hover {
+  opacity: 0.8;
+}
+</style>
+
+<div class="row ">
+    <div class="col-12 grid-margin">
+      <div class="card" style=" margin-left: 10%; margin-right: 10%; margin-top: 5%;color: black;" >
+        <div class="card-body">
+          <h3 class="card-title">Staff</h3>
+          <br>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-4">
+   <input type="text" class="form-control"id="myInput" onkeyup="myFunction()" placeholder="Search for Name" title="Type in a name" style="color: black;">
+    </div>
+     <div class="col-sm-4" style="margin-left:20%;">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+   Add Staff
+  </button>
+
+  <!-- The Modal -->
+       <div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form action="{% url 'staff' %}" method="POST">
+                {% csrf_token %}
+                <div class="container" >
+					<h1 style="float:left;">Create Staff</h1>
+					<br>
+					<hr>
+					<label for="name" style="float:left ;"><b>Name</b></label>
+					<input type="text" placeholder="Enter Name" name="name"><br>
+					<label for="email" style="float:left ;"><b>Email</b></label>
+					<input type="text" placeholder="Enter Email" name="email" ><br>
+					
+					<label for="contact" style="float:left ;"><b>designation</b></label>
+					<input type="text" placeholder="design" name="desig"><br>
+					
+					<label for="contact" style="float:left ;"><b>Contact</b></label>
+					<input type="text" placeholder="Enter Contact No" name="contact" ><br>
+					<label for="Department" style="float:left ;"><b>Department</b></label>
+						<select id="inputdepartment" class="form-select" name="department">
+						  <option selected>select</option>
+						  <option>IT</option>
+						  <option>Tours</option>
+						  <option>Accounts</option>
+						</select>
+					   <br>
+						<label for="photo" style="float:left ;"><b>Image</b></label><br>
+						<input type="file"  name="photo">
+					   <br>
+					 <label for="username" style="float:left ;"><b>Username</b></label>
+					<input type="text" placeholder="Enter Username" name="username" ><br>
+					<label for="psw" style="float:left ;"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="password">
+					
+					<label style="float:left ;">
+						<h3>Privilege</h3>
+					</label>
+					<br><br><br><br>
+					<div class="row">
+						<div class="form-check">
+							<input class="chkvalue" value="all" type="checkbox" name="check" id="checkvalue">
+							<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							   All
+							</label>
+						  </div>
+					<div class="form-check">
+						<input class="chkvalue" value="visitor" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Visitors Management
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="lead" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Leads Management
+						</label>
+					  </div>
+					  <div class="form-check">
+						&nbsp;&nbsp;&nbsp;<input class="chkvalue" value="classes" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Classes
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="staff" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Staff Management
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="admission" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Admission
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="Transportation" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Transportation
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="Library" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Library Management
+						</label>
+					  </div>
+					  <div class="form-check">
+						<input class="chkvalue" value="fee" type="checkbox" name="check" id="checkvalue">
+						<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+							Fee Management
+						</label>
+					  </div>
+					  <input type="text" name="coursename" id="txtvalues">
+					  <br>
+					  <input id="but1"   type="submit" value="Done" onclick="return alert('record inseted')">
+					  </div>
+					</div>
+              
+                <!-- <div class="container">
+                  <input type="submit" value="Done">
+                </div> -->
+              </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+     </div>
+     </div>
+       <br>
+       <br>
+          <div class="table-responsive">
+            <table class="table" id="myTable" style="color: black;">
+				<thead>
+					<tr class="header" style="font-size: 18px; ">
+						<th>
+						</th>
+						<th> Name </th>
+						
+						<th> Department </th>
+						<th> Conatct </th>
+						<th> Photo </th>
+						<th> Email </th>
+						<th> Username </th>
+						<th> Password </th>
+						<th> Privilege </th>
+
+					</tr>
+				</thead>
+				<tbody id="myTable">
+					{% for i in data %}
+					<tr>
+						<td>
+						 
+						</td>
+						<td>{{ i.name }} </td>
+						
+						<td> {{ i.department }} </td>
+
+						<td>{{ i.contact }} </td>                             
+						
+						<td> {{ i.photo }}</td>
+						<td> {{ i.email }}</td>
+						<td> {{ i.username }}</td>
+						<td> {{ i.password }}</td>
+						<td> {{ i.check1 }}&nbsp;
+							<!-- {{ i.checkvisitor }}&nbsp;
+							{{ i.checkleads }}&nbsp;
+							{{ i.checkstaff }}&nbsp;
+							{{ i.checkadm }}&nbsp;
+							{{ i.checktrans }}&nbsp;
+							{{ i.checklibra }}&nbsp;
+							{{ i.checkfee }}&nbsp; -->
+						</td>
+						<td> <a href="{% url 'staff_delete' i.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure want to Delete ?')">Delete</a></td>
+						<td> <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal-{{i.id}}">Update</a>
+							<!--<a href="{% url 'institute_staff_update' i.id %}" class="btn btn-success" >Update</a>-->
+						  <!-- The Modal -->
+						  <div class="modal" id="myModal-{{i.id}}">
+							<div class="modal-dialog modal-dialog-centered">
+							  <div class="modal-content">
+						  
+								<!-- Modal Header -->
+								<div class="modal-header">
+								  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+								</div>
+						  
+								<!-- Modal body -->
+								<div class="modal-body">
+									<form action="{% url 'staff_update' i.id %}" method="POST">
+										{% csrf_token %}
+										<div class="container" >
+											<h1 style="float:left;">Create Staff</h1>
+											<br>
+											<hr>
+											<label for="name" style="float:left ;"><b>Name</b></label>
+											<input type="text" placeholder="Enter Name" name="name" value="{{i.name}}"><br>
+											<label for="email" style="float:left ;"><b>Email</b></label>
+											<input type="text" placeholder="Enter Email" name="email" value="{{i.email}}" ><br>
+											
+											<label for="contact" style="float:left ;"><b>designation</b></label>
+											<input type="text" placeholder="design" name="desig" value="{{i.desig}}"><br>
+											
+											<label for="contact" style="float:left ;"><b>Contact</b></label>
+											<input type="text" placeholder="Enter Contact No" name="contact" value="{{i.contact}}" ><br>
+											<label for="Department" style="float:left ;"><b>Department</b></label>
+												<select id="inputdepartment" class="form-select" name="department">
+												  <option selected>select</option>
+												  <option >IT</option>
+												  <option >Tours</option>
+												  <option >Accounts</option>
+												</select>
+											   <br>
+												<label for="photo" style="float:left ;"><b>Image</b></label><br>
+												<input type="file"  name="photo"value="{{i.photo}}">
+											   <br>
+											 <!-- <label for="username" style="float:left ;"><b>Username</b></label>
+											<input type="text" placeholder="Enter Username" name="username" ><br> -->
+											<label for="psw" style="float:left ;"><b>Password</b></label>
+											<input type="password" placeholder="Enter Password" name="password" value="{{i.password}}">
+											
+											<label style="float:left ;">
+												<h3>Privilege</h3>
+											</label>
+											<br><br><br><br>
+											<div class="row">
+												<div class="form-check">
+													<input class="chkvalue" value="all" type="checkbox" name="check" id="checkvalue">
+													<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													   All
+													</label>
+												  </div>
+											<div class="form-check">
+												<input class="chkvalue" value="visitor" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Visitors Management
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="lead" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Leads Management
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="staff" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Staff Management
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="admission" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Admission
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="Transportation" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Transportation
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="Library" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Library Management
+												</label>
+											  </div>
+											  <div class="form-check">
+												<input class="chkvalue" value="fee" type="checkbox" name="check" id="checkvalue">
+												<label class="form-check-label" for="flexRadioDefault1" style="float:left ;">
+													Fee Management
+												</label>
+											  </div>
+											  <input type="text" name="coursename" id="txtvalues2">
+											  <br>
+											  <input id="but2"   type="submit" value="Done" onclick="return alert('Updated successfully')">
+											  </div>
+											</div>
+									  
+										<!-- <div class="container">
+										  <input type="submit" value="Done">
+										</div> -->
+									  </form>
+								</div>
+						  
+								<!-- Modal footer -->
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+								</div>
+						  
+							  </div>
+							</div>
+						  </div>
+						
+						
+						
+						
+						
+						</td>
+
+					</tr>
+					{% endfor %}
+				</tbody>
+            </table>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+    function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+    txtValue = td.textContent || td.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    tr[i].style.display = "";
+    } else {
+    tr[i].style.display = "none";
+    }
+    }       
+    }
+    }
+
+    $(document).ready(function(){
+      $('.chkvalue').click(function() { // run through each of the checkboxes
+       var txt="";
+       $('.chkvalue:checked').each(function(){
+        txt +=$(this).val()+","
+       });
+	   txt=txt.substring(0,txt.length-1);
+       $('#txtvalues').val(txt);
+      });
+    });
+    $(document).ready(function(){
+		$('.chkvalue').click(function() { // run through each of the checkboxes
+		 var txt="";
+		 $('.chkvalue:checked').each(function(){
+		  txt +=$(this).val()+","
+		 });
+		 txt=txt.substring(0,txt.length-1);
+		 $('#txtvalues2').val(txt);
+		});
+	  });
+  
+
+    </script>
+
+{% endblock %}

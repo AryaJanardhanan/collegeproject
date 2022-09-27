@@ -1,0 +1,120 @@
+{% extends 'base_student.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<style>
+
+    @media only screen and (max-width: 360px)  {
+      .text {
+        width:100%
+        }
+      }
+
+  
+
+
+</style>
+
+
+<a href="javascript:void(0);" onclick="printPageArea('content')">Print</a>
+<script>
+  function printPageArea(content){
+    var printContent = document.getElementById('content');
+    var WinPrint = window.open('', '', 'width=900,height=650');
+    WinPrint.document.write(printContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}
+</script>
+
+
+<div class="container" style="margin-left: 5%;padding-top: 3%;padding-right: 10%;">
+  <div class="card" id="content">
+       <center>
+      <br>
+       <p><h2>Fee Reciept</h2></p>
+      </center>
+
+      <br>
+        <div style="padding-left: 2%;">
+        {% for i in data %}
+            <label>Student Name:</label>
+            <input type="text"  style=" border: none;" value="{{i.student_id.sname}}"><br>
+            <label>Class:</label>
+            <input type="text" style=" border: none;" value="{{i.student_id.portion_id.name}}"><br>
+            <label>Division:</label>
+            <input type="text" style=" border: none;" value="{{i.student_id.portion_id.div}}"><br>
+        {% endfor %}
+      </div>
+      <br>
+         <div style="margin-left: 2%;margin-right:2%">
+            <table class="table table-bordered">
+              {% for i in data %}
+                <thead>
+                  <tr>
+                    <th>Sl.No</th>
+                    <th>Particulars</th>
+                    <th>fees</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td>1</td>
+                    <td>Admission Fee</td>
+                    <td>{{ i.admsnfee}}</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Tuition Fee</td>
+                    <td>{{ i.tutfee}}</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Exam Fee</td>
+                    <td>{{ i.exmfee}}</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Bus Fee</td>
+                    <td>{{ i.busfee}}</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Lab Fee</td>
+                    <td>{{ i.labfee}}</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Uniform Fee</td>
+                    <td>{{ i.unifee}}</td>
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+            
+         </div>
+         <br>
+         <div>
+          
+        </div>
+        <br>
+</div>
+</div> 
+
+
+
+
+
+
+  {% endblock %}

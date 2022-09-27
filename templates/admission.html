@@ -1,0 +1,285 @@
+{% extends 'base_staff.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  </head>
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  
+  form {
+    border: 3px solid #f1f1f1;
+    font-family: Arial;
+  }
+  
+  .container {
+    padding: 20px;
+    background-color: #f1f1f1;
+  }
+  
+  input[type=text],[type=textarea],[type=email],[type=password],[type=file], [type=date], input[type=submit] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+   
+  }
+  
+  
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+  }
+  
+  input[type=submit]:hover {
+    opacity: 0.8;
+  }
+  </style>
+  
+  <div class="row ">
+      <div class="col-12 grid-margin">
+        <div class="card" style=" margin-left: 10%; margin-right: 10%; margin-top: 5%;color: black;" >
+          <div class="card-body">
+            <h3 class="card-title">Admission</h3>
+            <br>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-4">
+     <input type="text" class="form-control"id="myInput" onkeyup="myFunction()" placeholder="Search for Name" title="Type in a name" style="color: black;">
+      </div>
+       <div class="col-sm-4" style="margin-left:20%;">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+     Admission
+    </button>
+  
+    <!-- The Modal -->
+         <div class="modal" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Admission Form</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+              <form action="{% url 'admission' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="container" style="background-color:white">
+                    
+                      <label>Student Name</label>
+                     <input type="text"  name="sname" required>
+                     <label>DOB</label>
+                     <input type="date"  name="dob" required>
+                     <br>
+                     <label>Current Address</label>
+                     <input type="textarea" rows="4" cols="50" name="caddress" required>
+                     <label>Permanant Address</label>
+                     <input type="textarea" rows="4" cols="50" name="paddress" required>
+                     <br>
+                    
+                     <label>Gender</label>
+                     <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Female
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" value="other" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                       other
+                      </label>
+                    </div>
+                    <br>
+        
+                     <label>Father</label>
+                     <input type="text"  name="father" required>
+                     <label>Father Occupation</label>
+                     <input type="text"  name="foccu" required>
+                     <label>Father contact</label>
+                     <input type="text"  name="fcontact" required>
+                     <br>
+                     <label>Mother</label>
+                     <input type="text"  name="mother" required>
+                     <label>Mother Occupation</label>
+                     <input type="text"  name="moccu" required>
+                     <label>Mother contact</label>
+                     <input type="text"  name="mcontact" required>
+                     <br>
+                     <h4></h4>
+                     <label>Previous Qualification</label>
+                     <input type="text" placeholder="institute Name" name="quali" >
+                     <input type="text" placeholder="Marks" name="marks" >
+                     <input type="file" placeholder="upload certificate" name="certificate" >
+                     <br>
+                     
+                     <br>
+                     <label>Transportation Mode</label>
+                     <div class="form-check">
+                      <input class="form-check-input" type="radio" name="trans" value="collagebus" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        College Bus
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="trans" value="self" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Self
+                      </label>
+                    </div>
+                    <br>
+                    <label>Blood Group</label>
+                    <input type="text"  name="blood" required>
+                    <br>
+                    <label>Image</label>
+                    <input type="file" placeholder="Upload" name="photo" required>
+                    <br>
+                    <label>Class</label><br>
+                    <select style="width:100%;height:45px;" name="sclass" >
+                      <option>Select</option>
+                      {% for i in var %}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                    <label>Username</label>
+                     <input type="text"  name="username" required>
+                     <label>Password</label>
+                     <input type="password"  name="password" required>
+                  </div>
+                  <br>
+                  
+                
+                  <div class="container">
+                    <input type="submit" value="Done">
+                  </div>
+                </form>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+       </div>
+       </div>
+         <br>
+         <br>
+            <div class="table-responsive">
+              <table class="table" id="myTable" style="color: black;">
+                <thead style="font-size: 16px;font-family: Arial, Helvetica, sans-serif; width: 100%;">
+                  <tr class="header" >
+                  
+                    <th > Student&nbsp;Name  </th>
+                    <th> Date&nbsp;Of&nbsp;Birth</th>
+                    <th> Current&nbsp;Address </th>
+                    <th> Permanent&nbsp;Address </th>
+                    <th> gender</th>
+                    <th> Father</th>
+                    <th> Father&nbsp;Occupation</th>
+                    <th> Father&nbsp;Contact </th>
+                    <th> Mother</th>
+                    <th> Mother&nbsp;Occupation</th>
+                    <th> Mother&nbsp;Contact </th>
+                    <th> Qualification</th>
+                    <th> Marks</th>
+                    <th> Certificate </th>
+                    <th>Class</th>
+                    <th>Image</th>
+                    <th>Transportation</th>
+                    <th>Blood&nbsp;Group</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in data %} 
+                            <tr>
+                               <td>{{ i.sname }}</td>
+                               <td>{{ i.dob|date:"d-m-Y" }}</td>
+                               <td>{{ i.caddress }}</td>
+                               <td>{{ i.paddress }}</td>               
+                               <td>{{ i.gender }}</td>
+                               <td>{{ i.father }}</td>
+                               <td>{{ i.foccu }}</td>
+                               <td>{{ i.fcontact }}</td>
+                               <td>{{ i.mother }}</td>
+                               <td>{{ i.moccu }}</td>
+                               <td>{{ i.mcontact }}</td>
+                               <td>{{ i.quali }}</td>
+                               <td>{{ i.marks }}</td>
+                               <td>{{ i.certificate }}</td>
+                               <td>{{ i.portion_id.name }}</td>
+                               <td>{{ i.photo }}</td>
+                             
+                              
+                               <td>{{ i.trans }}</td>
+                               <td>{{ i.blood }}</td>
+                              
+                               
+                              <td><a href="{% url 'admission_delete' i.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure want to Delete ?')">Delete</a></td>
+                               
+                          
+                            </tr>
+                            {% endfor %}
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <script>
+      function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      tr[i].style.display = "";
+      } else {
+      tr[i].style.display = "none";
+      }
+      }       
+      }
+      }
+      </script>
+  
+
+
+
+
+
+
+
+
+
+{% endblock %}

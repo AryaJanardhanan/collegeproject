@@ -1,0 +1,106 @@
+{% extends 'base_institute.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+<style>
+    @media(max-width:61.938em){
+      .row h3{
+        font-size: 19px;
+      }
+    }
+  </style>
+  <div class="row" style="margin-right:10% ;">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="button" style="margin-top: 5%;" data-bs-toggle="modal" data-bs-target="#myModal">Add Bus</button>
+      </div>
+ <!-- The Modal -->
+ <div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Bus</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <form action="{% url 'institute_transport' %}" method="POST">
+            {% csrf_token %}
+            <div class="container" style="background-color:white">
+               
+               <label>Bus Number</label>
+               <input type="text"  name="bno" style="float: right;"    required>
+               <br>
+               <label>Register Number</label>
+               <input type="text"  name="regno" style="float: right;"    required>
+               <br>
+               
+               <label>Staff-In-Charge</label>
+               <select  name="staff">
+                <option selected="true"   style="float: right;">Select a Staff</option>
+                 {% for i in a %}
+                <option value="{{i.name}}" style="float: right;">{{i.name}}</option>
+                {% endfor %}
+             </select>
+               <br>
+               <label>Driver</label>
+               <select name="driver" >
+                <option selected="true"  style="float: right;" >Select a driver</option>
+                {% for i in b %}
+                 <option value="{{i.dname}}" name="driver" style="float: right;">{{i.dname}}</option>
+               {% endfor %}
+              
+             </select>
+               <br>
+               <br>
+               <input type="submit" value="ADD" class="btn btn-primary">
+            </div>
+         </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+            <div class="row" > 
+                {% for i in data %}
+                <div class="col-sm-4 grid-margin">
+                  <div class="card" style="margin-top:15%;margin-left: 20%;box-shadow: 5px 10px 8px #888888;background-color:rgb(241, 248, 248);">
+                    <img src="{% static 'assets/images/bus.png' %}">
+                    <div class="card-body" style="text-align: right;cursor: pointer;">
+                      <div class="row">
+                        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                          <div style="text-align: center;">
+                           
+                            <h3><a href="{% url 'bus_details' i.id %}" style="text-decoration: none;">{{i.bno}}-{{i.id}}</a></h3>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="{% url 'institute_transport_delete' i.id %}" class="btn btn-social-icon-text btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');" >
+                        <i class="mdi mdi-delete-forever"></i> </a>
+      
+                     
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+               
+             </div>
+
+           
+ 
+ {% endblock %}
+
+ 
